@@ -1,14 +1,22 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { GA4React } from "react-ga4";
 
 const RouterHandler = () => {
   const location = useLocation();
-  const gaInstance = GA4React.getGA4Instance();
 
   useEffect(() => {
-    gaInstance.pageview(location.pathname + location.search);
-  }, [location, gaInstance]);
+    const gaInstance = window.gtag;
+
+    if (gaInstance) {
+      console.log('Google Analytics initialized');
+      const trackingId = 'G-YPGMLSED5Y'; // 실제 추적 ID로 대체해주세요
+      gaInstance('config', trackingId, {
+        page_path: location.pathname + location.search,
+      });
+    } else {
+      console.log('Google Analytics not initialized');
+    }
+  }, [location]);
 
   return null;
 };
