@@ -9,7 +9,7 @@ const RouterHandler = () => {
 
     if (gaInstance) {
       console.log('Google Analytics initialized');
-      const trackingId = 'G-YPGMLSED5Y'; // 실제 추적 ID로 대체해주세요
+      const trackingId = 'G-RXPFX27ZJ5'; // 실제 추적 ID로 대체해주세요
       gaInstance('config', trackingId, {
         page_path: location.pathname + location.search,
       });
